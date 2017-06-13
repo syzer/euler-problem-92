@@ -36,9 +36,6 @@ const fastStop = _.memoize(a => {
   } else {
     return fastStop(chain(a))
   }
-}, a => {
-  // console.log(a)
-  return a
 })
 
 const tenMln = 10000000
