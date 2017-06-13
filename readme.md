@@ -44,5 +44,20 @@ numbers  85
 >calc 100
 80
 
+>calc 10000000
+...
+8581146
+
+
+>fastCalc 200
+168
+
+
 
 ```
+
+## Compiling
+```bash
+ghc -O2 --make euler92
+```
+./euler92 
