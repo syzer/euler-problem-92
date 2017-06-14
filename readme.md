@@ -59,5 +59,17 @@ numbers  85
 ## Compiling
 ```bash
 ghc -O2 --make euler92
+./euler92
 ```
-./euler92 
+
+
+
+## Node version 
+With special dedication for (@fterrier)
+
+```bash
+npm install
+node euler92
+#...23 sec later
+#>8581146
+```

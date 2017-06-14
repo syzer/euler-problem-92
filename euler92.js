@@ -1,22 +1,22 @@
 const _ = require('lodash')
 
+// numbers :: Int -> [Int]
+// 85 -> [8, 5]
 const numbers = a =>
   a.toString().split('').map(Number)
-
-// console.log(numbers(85))
-// [8, 5]
 
 const square = a => a * a
 const add = (a, b) => a + b
 
+// AKA next in chain
+// chain:: Int -> Int
+// 42 -> 20
+// 85 -> 89
 const chain = a => numbers(a).map(square).reduce(add)
 
-// console.log(chain(42))
-// 20
-
-// console.log(chain(85))
-// 89
-
+// stop :: Int -> Int
+// warning 0 -> Exception
+// when to stop (on 1 or 89)
 const stop = a => {
   if (a === 89) return 89
   if (a === 1) {
@@ -25,9 +25,6 @@ const stop = a => {
     return stop(chain(a))
   }
 }
-
-// console.log(stop(10))
-// 1
 
 const fastStop = _.memoize(a => {
   if (a === 89) return 89
@@ -42,14 +39,18 @@ const tenMln = 10000000
 const mln = 1000000
 const hundred = 100
 
-const calc = Array
-  .from({ length: tenMln }, (x, i) => i + 1)
+// calc :: Int -> Int -> 8581146
+// calc :: Void -> 8581146
+const calc = (bound = tenMln) => Array
+  .from({ length: bound }, (x, i) => i + 1)
   .map(fastStop)
   .filter(a => a === 89)
   .length
 
-console.log(calc)
-// 23 sec
-// 8581146
-// 856929
-
+module.exports = {
+  stop,
+  numbers,
+  fastStop,
+  calc,
+  chain
+}
